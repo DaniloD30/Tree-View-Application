@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         inter: ["Inter"],
+        roboto: ["Roboto"]
       },
       colors: {
         blue: {
