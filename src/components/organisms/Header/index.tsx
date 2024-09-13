@@ -1,11 +1,12 @@
+import { useCompanies } from "../../../services/companies";
+
 const Header = ({ children }: React.PropsWithChildren) => {
-  //TODO: INTEGRAÇÃO COMPANIES
+  //TODO: CONTEXT API OU ZUSTAND PARA SELECIONAR O ID DO COMPANY
 
-  //TODO: BOTÕES COMPANIES
-
-  //TODO: CONTEXT API PARA SELECIONAR O ID DO COMPANY
-
-  //TODO: CONTEXT API PARA O FILTROS
+  //TODO: Utilizar o header com o children pode ser perigoso, pois vai renderizar toda a arvore
+                  // caso tenha useState aqui, o que provavelmente vai ter para o isActive
+                  
+  const { data } = useCompanies();
 
   return (
     <>
@@ -13,30 +14,18 @@ const Header = ({ children }: React.PropsWithChildren) => {
         <div className="flex items-center justify-between bg-blue-950 h-12 p-3">
           <img src="/logo-tractian.png" width="100" />
           <div className="flex items-center gap-[10px]">
-            <button
-              className="px-2 py-1  text-white font-semibold text-xs flex items-center gap-2 rounded-sm 
+            {data &&
+              data?.map((item) => (
+                <button
+                  key={item.id}
+                  className="px-2 py-1  text-white font-semibold text-xs flex items-center gap-2 rounded-sm 
           bg-blue-600"
-            >
-              {/* TODO: isActive */}
-              <img src="/company.png" width="12" />
-              Apex Unit
-            </button>
-            <button
-              className="px-2 py-1  text-white font-semibold text-xs flex items-center gap-2 rounded-sm 
-          bg-blue-600"
-            >
-              {/* TODO: isActive */}
-              <img src="/company.png" width="12" />
-              Tobias Unit
-            </button>
-            <button
-              className="px-2 py-1  text-white font-semibold text-xs flex items-center gap-2 rounded-sm 
-          bg-blue-600"
-            >
-              {/* TODO: isActive */}
-              <img src="/company.png" width="12" />
-              Jaguar Unit
-            </button>
+                >
+                  {/* TODO: isActive */}
+                  <img src="/company.png" width="12" />
+                  {item.name}
+                </button>
+              ))}
           </div>
         </div>
 
@@ -54,7 +43,7 @@ const Header = ({ children }: React.PropsWithChildren) => {
               "text-gray-600
               }`}
                 >
-                  {/* TODO: isActive */}
+                  {/* TODO: selected isActive */}
                   <img src="/energy.png" width="14" />
                   Sensor de Energia
                 </button>
@@ -63,7 +52,7 @@ const Header = ({ children }: React.PropsWithChildren) => {
               "text-gray-600
               }`}
                 >
-                  {/* TODO: isActive */}
+                  {/* TODO: selected isActive */}
                   <img src="/critic.png" width="14" />
                   Crítico
                 </button>
