@@ -1,4 +1,5 @@
 import Accordion from "./components/Accordion";
+import ComponentDetail from "./components/ComponentDetail";
 import Header from "./components/Header";
 
 const treeDataMock = [
@@ -37,6 +38,9 @@ const treeDataMock = [
     ],
   },
 ];
+//TODO: Separar em páginas e responsabilidades
+//TODO: Tomar cuidado com a escolha do gerenciador de estado
+//TODO: Por conta das renderizações desnecessarias
 
 function App() {
   return (
@@ -49,7 +53,9 @@ function App() {
               <Accordion key={index} node={item} />
             ))}
           </div>
-          <div className="border basis-2/3 rounded-sm"></div>
+          <div className="border basis-2/3 rounded-sm">
+            <ComponentDetail titleComponent="MOTOR RT COAL AF01" />
+          </div>
         </div>
       </Header>
     </div>
