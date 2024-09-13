@@ -4,7 +4,7 @@ type InputNativeProps = InputHTMLAttributes<HTMLInputElement>;
 
 export type TextFieldProps = {
   testId?: string;
-  startAdornment?: JSX.Element;
+  endAdornment?: JSX.Element;
   type?: InputNativeProps['type'];
   value?: InputNativeProps['value'];
   name?: InputNativeProps['name'];

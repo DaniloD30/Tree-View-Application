@@ -9,7 +9,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       testId,
       value,
       placeholder,
-      startAdornment,
+      endAdornment,
       max,
       name,
       maxLength,
@@ -26,11 +26,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
     return (
       <div>
-        <div className="flex rounded-lg border px-2.5 bg-white">
-          {startAdornment && (
-            <div className="flex items-center">{startAdornment}</div>
-          )}
-
+        <div className="flex border-b px-2.5 bg-white">
           <div className="flex-1">
             <input
               ref={ref}
@@ -44,10 +40,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               maxLength={maxLength}
               onChange={handleOnChange}
               className={
-                "h-[38px] w-full border-0 py-2 text-sm leading-6 text-gray-900 outline-none placeholder:text-gray-200"
+                "h-[45px] w-full border-0 py-2 text-sm leading-6 text-gray-900 outline-none placeholder:text-gray-400"
               }
             />
           </div>
+
+          {endAdornment && (
+            <div className="flex items-center">{endAdornment}</div>
+          )}
         </div>
       </div>
     );

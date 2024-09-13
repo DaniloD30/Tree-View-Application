@@ -1,6 +1,7 @@
 import { ComponentDetailProps } from "./types";
 
 const ComponentDetail = ({ titleComponent }: ComponentDetailProps) => {
+  //TODO: O Component pode receber diretamente daqui os dados para preencher o detalhe
   return (
     <div className="">
       <div className="flex items-center gap-3 p-3">

@@ -1,4 +1,5 @@
 import Accordion from "../../atoms/Accordion";
+import { TextField } from "../../atoms/Input";
 
 const treeDataMock = [
   {
@@ -40,7 +41,11 @@ const treeDataMock = [
 function TreeViewAssets() {
   return (
     <div className="border basis-1/3 rounded-sm flex flex-col">
-      <input placeholder="search" />
+      <TextField
+        placeholder="Buscar Ativo ou Local"
+        maxLength={256}
+        endAdornment={<img src="search.svg" />}
+      />
       {treeDataMock.map((item, index) => (
         <Accordion key={index} node={item} />
       ))}
