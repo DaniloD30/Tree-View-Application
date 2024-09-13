@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { baseApi } from "../../libs/axios";
-import { CompaniesResponse } from "./types";
+import { Company } from "./types";
 import { createUseCompanies } from "./keys";
 
 export const useCompanies = () => {
@@ -9,7 +9,7 @@ export const useCompanies = () => {
     queryFn: async () => {
       const url = `/companies`;
 
-      const { data } = await baseApi.get<CompaniesResponse[]>(url);
+      const { data } = await baseApi.get<Company[]>(url);
 
       return data;
     },
