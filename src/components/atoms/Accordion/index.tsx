@@ -8,13 +8,35 @@ import React from "react";
 
 //TODO: Quando não tiver children, clicar para detalhar o Ativo!!
 
+type typeNodeProp = "location" | "asset" | "component";
 const Accordion = ({ node }) => {
-
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
+
+  function getNodeType(): typeNodeProp {
+    const isAsset = node.locationId && !node.sensorId;
+    const isComponent = node.sensorType;
+
+    if (isAsset) {
+      return "asset";
+    } else if (isComponent) {
+      return "component";
+    }
+    return "location";
+  }
+
+  function typeNode(type: typeNodeProp) {
+    const types: { [key: string]: JSX.Element } = {
+      location: <img src="/map-icon.svg" width="20" />,
+      asset: <img src="/cube.svg" width="20" />,
+      component: <img src="/half-cube-icon.svg" width="20" />,
+    };
+
+    return types[type];
+  }
 
   return (
     <div className="p-2">
@@ -22,23 +44,15 @@ const Accordion = ({ node }) => {
         onClick={toggleAccordion}
         className="cursor-pointer font-bold flex items-center gap-2"
       >
-        {node.children && (
+        {node.children.length > 0 && (
           <img
             src="/chevron.svg"
             width="11"
             className={`${isOpen ? "rotate-0" : "-rotate-90"}`}
           />
         )}
-        {/* TODO: Condicional SVG */}
-        <img src="/cube.svg" width="20" />
-        {/* <img
-            src="/half-cube-icon.svg"
-            width="20"
-          /> */}
-        {/* <img
-            src="/map-icon.svg"
-            width="20"
-          /> */}
+        
+        {typeNode(getNodeType())}
 
         <h4
           className="font-roboto font-medium text-sm text-blue-950 leading-[22px]
